@@ -1,0 +1,47 @@
+<div *ngIf="cityNotFound" class="alert alert-danger">
+  <div class="text-center">
+    <strong>NO SE ENCONTRARON DATOS PARA: {{city}}</strong>
+  </div>
+</div>
+
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-lg-4">
+      <img [src]="urlImage" alt="img_weather" width="300px" height="300px" />
+    </div>
+
+    <div class="col-lg-6">
+      <input
+        type="text"
+        [(ngModel)]="city"
+        (keydown.enter)="getMyWeather()"
+        class="form-control form-control-lg font2rem"
+        placeholder="Ingrese ciudad"
+      />
+      <button
+        (click)="getMyWeather()"
+        class="btn btn-primary btn-lg btn-block mt-4 font2rem"
+        [disabled]="city == ''"
+      >Obtener clima</button>
+
+      <div *ngIf="loading" class="text-center mt-3">
+        <div class="spinner-grow text-primary" role="status"></div>
+        <div class="spinner-grow text-primary" role="status"></div>
+        <div class="spinner-grow text-primary" role="status"></div>
+      </div>
+      <div *ngIf="results" class="card mt-3">
+        <div class="card-body">
+          <p><b>Temperatura: </b>{{ temperature }} °C</p>
+          <p><b>Humedad: </b>{{ humidity }}%</p>
+          <p><b>Clima: </b>{{ weather }}</p>
+          <p><b>Sensación térmica: </b> {{ feelsLike }} °C</p> 
+          <p><b>Presion Atmosferica: </b>{{ pressure }} Hpa</p> 
+          <p><b>Minima: </b>{{ tempMin }} °C</p> 
+          <p><b>Máxima: </b>{{ tempMax }} °C</p> 
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
