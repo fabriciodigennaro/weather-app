@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  weather_url: 'https://api-services-middleware.herokuapp.com/weather',
 };
