@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   pressure = 0;
   tempMin = 0;
   tempMax = 0;
+  windSpeed = 0;
+  windDirection = '';
 
   results = false;
   loading = false;
@@ -35,13 +37,15 @@ export class DashboardComponent implements OnInit {
         this.loading = false;
         this.results = true;
 
-        this.temperature = Math.round(data.main.temp);
-        this.humidity = data.main.humidity;
-        this.weather = data.weather[0].main;
-        this.feelsLike = Math.round(data.main.feels_like);
-        this.pressure = data.main.pressure;
-        this.tempMin = Math.round(data.main.temp_min);
-        this.tempMax = Math.round(data.main.temp_max);
+        this.temperature = Math.round(data.temperature);
+        this.humidity = data.humidity;
+        this.weather = data.weather;
+        this.feelsLike = data.feels_like;
+        this.pressure = data.pressure;
+        this.tempMin = data.min_temperature;
+        this.tempMax = data.max_temperature;
+        this.windSpeed = data.wind.speed;
+        this.windDirection = data.wind.direction;
       },
       (error) => {
         this.loading = false;
